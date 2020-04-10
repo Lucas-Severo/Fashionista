@@ -5,6 +5,11 @@ import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header() {
+
+    function showCart() {
+        document.querySelector(".cart").classList.toggle("cart--visible");
+    }
+
     return (
         <header className="header">
             <div className="header__items">
@@ -13,7 +18,7 @@ export default function Header() {
                     <div className="header__search">
                         <FontAwesomeIcon icon={faSearch}/>
                     </div>
-                    <div className="header__cart">
+                    <div className="header__cart" onClick={showCart}>
                         <FontAwesomeIcon icon={faCartPlus}/>
                     </div>
                 </div>
