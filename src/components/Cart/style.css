@@ -7,6 +7,7 @@
     width: 437px;
     height: 100vh;
     transition: all .4s ease-in-out;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .cart--visible {
@@ -14,6 +15,7 @@
     visibility: visible;
     top: 0;
     right: 0;
+    z-index: 3;
 }
 
 .cart__header {
@@ -43,8 +45,86 @@
     margin: 0 auto;
 }
 
-.cart__content {
-    background-color: #000;
+.cart__list {
+    background-color: #F2F2F2;
     width: 100%;
     height: calc(100% - 93px);
+    overflow-y: scroll;
+}
+
+.cart__item {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+     "image title price"
+     "image size installments"
+     "image . ."
+     "image amount amount"
+     "image . ."
+     "remove . .";
+    border-bottom: 1px solid #ccc;
+}
+
+.item__image {
+    grid-area: image;
+    width: 104px;
+    height: 150px;
+}
+
+.item__title {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    grid-area: title;
+}
+
+.item__price {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    grid-area: price;
+}
+
+.item__size {
+    font-size: 20px;
+    color: #6D6D6D;
+    text-transform: uppercase;
+    grid-area: size;
+}
+
+.item__installments {
+    color: #6D6D6D;
+    grid-area: installments;
+}
+
+.item__remove {
+    grid-area: remove;
+    color: #FF0000;
+    cursor: pointer;
+}
+
+.item__info {
+    grid-area: amount;
+    display: flex;
+}
+
+.item__decreases,
+.item__increases {
+    width: 26px;
+    height: 24px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #FFF;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.item__decreases:hover,
+.item__increases:hover {
+    background-color: transparent;
+    color: #000;
+}
+
+.item__amount {
+    padding: 0 15px;
 }
