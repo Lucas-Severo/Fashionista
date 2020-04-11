@@ -8,6 +8,7 @@ export default function Header() {
 
     function showCart() {
         document.querySelector(".cart").classList.toggle("cart--visible");
+        document.querySelector(".home").classList.add("home--scroll-lock");
     }
 
     return (
