@@ -6,7 +6,7 @@
     right: 0;
     width: 437px;
     height: 100vh;
-    transition: all .4s ease-in-out;
+    transition: all .2s ease-in-out;
     box-shadow: -2px 0 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -127,4 +127,10 @@
 
 .item__amount {
     padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+    .cart {
+        width: 100%;
+    }
 }

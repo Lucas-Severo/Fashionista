@@ -52,6 +52,13 @@ body {
     max-width: 100%;
     width: 281px;
     height: 350px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.clothes__image:hover {
+    transform: scale(1.05);
 }
 
 .clothes__title {

@@ -42,6 +42,18 @@ export default function Home() {
                     <p className="clothes__price">R$ 48,50</p>
                 </div>
 
+                <div className="clothes__item">
+                    <img src={Cloth04} className="clothes__image" alt=""/>
+                    <p className="clothes__title">BLAZZER CINZA</p>
+                    <p className="clothes__price">R$ 48,50</p>
+                </div>
+
+                <div className="clothes__item">
+                    <img src={Cloth04} className="clothes__image" alt=""/>
+                    <p className="clothes__title">BLAZZER CINZA</p>
+                    <p className="clothes__price">R$ 48,50</p>
+                </div>
+
             </main>
         </div>
     );
