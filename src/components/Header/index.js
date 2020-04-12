@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,13 +15,13 @@ export default function Header() {
     return (
         <header className="header">
             <div className="header__items">
-                <p className="header__logo">Fashionista</p>
+                <Link className="header__logo" to="/">Fashionista</Link>
                 <div className="header__buttons">
                     <div className="header__search">
                         <FontAwesomeIcon icon={faSearch}/>
                     </div>
-                    <div className="header__cart" onClick={showCart}>
-                        <FontAwesomeIcon icon={faCartPlus}/>
+                    <div className="header__cart">
+                        <FontAwesomeIcon icon={faCartPlus} onClick={showCart}/>
                     </div>
                 </div>
             </div>
