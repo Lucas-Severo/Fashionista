@@ -10,10 +10,6 @@ html, body {
     height: 100%;
 }
 
-#root {
-    position: relative;
-}
-
 body::after {
     content: "";
     opacity: 0;

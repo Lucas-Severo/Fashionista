@@ -1,58 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './style.css';
 
 import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 
-import Cloth01 from './assets/image1.jpg';
-import Cloth02 from './assets/image2.jpg';
-import Cloth03 from './assets/image3.jpg';
-import Cloth04 from './assets/image4.jpg';
+import api from '../../services/api';
 
 export default function Home() {
+    const [ products, setProducts ] = useState([]);
+    const [ quantity, setQuantity ] = useState(0);
+
+    async function getData() {
+        const response = await api.get();
+        setProducts(response.data.products);
+        setQuantity(response.data.products.length);
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
 
     return (
         <div className="home">
             <Header />
             <Cart />
             <main className="home__items clothes">
-                <p className="clothes__amount">18 Itens</p>
-                <div className="clothes__item">
-                    <img src={Cloth01} className="clothes__image" alt=""/>
-                    <p className="clothes__title">Camisa Branca</p>
-                    <p className="clothes__price">R$ 52,20</p>
-                </div>
-
-                <div className="clothes__item">
-                    <img src={Cloth02} className="clothes__image" alt=""/>
-                    <p className="clothes__title">CAMISA MANGA LONGA VERDE</p>
-                    <p className="clothes__price">R$ 65,30</p>
-                </div>
-
-                <div className="clothes__item">
-                    <img src={Cloth03} className="clothes__image" alt=""/>
-                    <p className="clothes__title">Camisa Branca</p>
-                    <p className="clothes__price">R$ 52,20</p>
-                </div>
-
-                <div className="clothes__item">
-                    <img src={Cloth04} className="clothes__image" alt=""/>
-                    <p className="clothes__title">BLAZZER CINZA</p>
-                    <p className="clothes__price">R$ 48,50</p>
-                </div>
-
-                <div className="clothes__item">
-                    <img src={Cloth04} className="clothes__image" alt=""/>
-                    <p className="clothes__title">BLAZZER CINZA</p>
-                    <p className="clothes__price">R$ 48,50</p>
-                </div>
-
-                <div className="clothes__item">
-                    <img src={Cloth04} className="clothes__image" alt=""/>
-                    <p className="clothes__title">BLAZZER CINZA</p>
-                    <p className="clothes__price">R$ 48,50</p>
-                </div>
+                <p className="clothes__amount">{quantity} Itens</p>
+                {
+                    products.map(product => (
+                        <div key={product.code_color} className="clothes__item">
+                        <img src={product.image} className="clothes__image" alt={product.name}/>
+                        <p className="clothes__title">{product.name}</p>
+                        <p className="clothes__price">{product.actual_price}</p>
+                        </div>
+                    ))
+                }
 
             </main>
         </div>

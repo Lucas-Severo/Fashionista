@@ -5,7 +5,7 @@ import './style.css';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import image3 from '../../pages/Home/assets/image3.jpg';
+import image3 from '../../pages/Home/assets/image3.png';
 
 export default function Cart() {
     function hideCart() {
