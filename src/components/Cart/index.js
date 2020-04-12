@@ -10,7 +10,7 @@ import image3 from '../../pages/Home/assets/image3.jpg';
 export default function Cart() {
     function hideCart() {
         document.querySelector(".cart").classList.remove("cart--visible");
-        document.querySelector(".home").classList.remove("home--scroll-lock");
+        document.querySelector("body").classList.remove("app--scroll-lock");
     }
 
     return (
