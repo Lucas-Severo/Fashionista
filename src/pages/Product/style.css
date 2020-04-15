@@ -1,0 +1,106 @@
+.product {
+    width: 100%;
+}
+
+.product__container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em 0;
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-areas: 
+        "image ."
+        "image name"
+        "image ."
+        "image price"
+        "image ."
+        "image choose"
+        "image sizes"
+        "image ."
+        "image button"
+}
+
+.product__image {
+    grid-area: image;
+    height: 400px;
+}
+
+.product__name {
+    grid-area: name;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.product__prices {
+    grid-area: price;
+    display: flex;
+    align-items: center;
+}
+
+.product__price {
+    margin-right: 1em;
+    font-size: 1.5em;
+}
+
+.product__installments {
+    margin-right: 1em;
+}
+
+.product__choose {
+    grid-area: choose;
+}
+
+.product__sizes {
+    grid-area: sizes;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.size__field:not(:last-child) {
+    margin-right: 20px;
+}
+
+.product__save {
+    grid-area: button;
+    width: 200px;
+    padding: 1em 2em;
+    background: #222;
+    color: #FFF;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .2s;
+}
+
+.product__save:hover {
+    background: #333;
+}
+
+@media(max-width:768px) {
+    .product__container {
+        width: 90%;
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "image" "image"  "image"
+        "name"  "."      "price"
+        "."     "choose" "sizes"
+        "."     "button"
+    }
+
+    .product__image {
+        height: 240px;
+        margin: 0 auto;
+    }
+    
+    .product__name {
+        font-size: 1.4em;
+        margin: 20px 0;
+    }
+
+    .product__save {
+        margin: 20px 0;
+    }
+}
