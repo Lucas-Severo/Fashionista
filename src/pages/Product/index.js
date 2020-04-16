@@ -39,15 +39,17 @@ export default function Product(props) {
                     </div>
                     <p className="product__choose">Escolha o tamanho:</p>
                         
-                    <div className="product__sizes size">
-                        {product.sizes.map(({size}) => (
-                            <div key={size} className="size__field">
-                                <input className="size__button" name="sizes" type="radio" id={size}/>
-                                <label className="size__name" htmlFor={size}>{size}</label>
-                            </div>
-                        ))}
-                    </div>
-                    <button type="submit" className="product__save">Adicionar à sacola</button>
+                    <form className="product__form">
+                        <div className="product__sizes sizes">
+                            {product.sizes.map(({size}) => (
+                                <div key={size} className="size__field">
+                                    <input className="size__button" required name="sizes" value={size} type="radio" id={size}/>
+                                    <label className="size__name" htmlFor={size}>{size}</label>
+                                </div>
+                            ))}
+                        </div>
+                        <button type="submit" className="product__save">Adicionar à sacola</button>
+                    </form>
                 </div>
             ))}
         </div>

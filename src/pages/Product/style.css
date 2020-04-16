@@ -16,8 +16,8 @@
         "image ."
         "image choose"
         "image sizes"
+        "image sizes"
         "image ."
-        "image button"
 }
 
 .product__image {
@@ -50,20 +50,62 @@
     grid-area: choose;
 }
 
-.product__sizes {
+.product__form {
     grid-area: sizes;
     display: flex;
+    flex-direction: column;
+}
+
+.product__sizes {
+    display: flex;
     flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+
+.size__field {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 50px;
+    width: 60px;
+    position: relative;
 }
 
 .size__field:not(:last-child) {
     margin-right: 20px;
 }
 
+.size__button {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.size__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    transition: outline .2s;
+}
+
+.size__name:hover {
+    outline: 2px dashed #21b4d0;
+}
+
+.size__button:checked + .size__name {
+    outline: 2px solid #21b4d0;
+}
+
 .product__save {
     grid-area: button;
     width: 200px;
-    padding: 1em 2em;
+    padding: 0.8em 2em;
     background: #222;
     color: #FFF;
     font-size: 1em;
@@ -84,10 +126,8 @@
         margin: 0 auto;
         grid-template-columns: 1fr;
         grid-template-areas: 
-        "image" "image"  "image"
-        "name"  "."      "price"
-        "."     "choose" "sizes"
-        "."     "button"
+        "image"  "name"  "price"
+        "choose" "sizes" "button"
     }
 
     .product__image {
@@ -98,6 +138,10 @@
     .product__name {
         font-size: 1.4em;
         margin: 20px 0;
+    }
+
+    .product__choose {
+        margin-top: 1em;
     }
 
     .product__save {
