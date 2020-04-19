@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header';
 import Cart from '../../components/Cart';
+import Search from '../../components/Search';
 
 import api from '../../services/api';
 import './style.css';
@@ -24,6 +25,7 @@ export default function Product(props) {
     return (
         <div className="product">
             <Header />
+            <Search />
             <Cart />
             {products.filter(product => product.code_color === id).map(product => (
                 <div className="product__container" key={product.code_color}>

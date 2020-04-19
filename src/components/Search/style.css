@@ -1,0 +1,114 @@
+.search {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 437px;
+    right: -100%;
+    height: 100vh;
+    transition: all .5s ease-in-out;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.search--visible {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+
+.search__header {
+    width: 100%;
+    height: 93px;
+    background-color: #FFF;
+}
+
+.search__items {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.search__close {
+    font-size: 28px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.search__items .search__title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.search__list {
+    background-color: #F2F2F2;
+    width: 100%;
+    height: calc(100% - 93px);
+    overflow-y: scroll;
+}
+
+.searchBox {
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.searchBox input {
+    width: 100%;
+    border-radius: 4px;
+    padding: 0.6em 1em;
+    color: #000;
+    font-size: 1em;
+    border: 1px solid #ccc;
+}
+
+.search__item {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+     "image title"
+     "image price"
+     "image installments";
+    border-bottom: 1px solid #ccc;
+}
+
+.search__image {
+    grid-area: image;
+    width: 104px;
+    height: 150px;
+}
+
+.search__title {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    grid-area: title;
+    color: black;
+    text-decoration: none;
+}
+
+.search__price {
+    font-size: 20px;
+    font-weight: bold;
+    grid-area: price;
+}
+
+.search__installments {
+    color: #6D6D6D;
+    grid-area: installments;
+}
+
+
+@media (max-width: 768px) {
+    .search {
+        width: 100%;
+    }
+}

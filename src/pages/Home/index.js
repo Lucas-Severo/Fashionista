@@ -7,6 +7,7 @@ import notFoundImage from '../../assets/notfound.png';
 
 import Header from '../../components/Header';
 import Cart from '../../components/Cart';
+import Search from '../../components/Search';
 
 import api from '../../services/api';
 
@@ -27,6 +28,7 @@ export default function Home() {
     return (
         <div className="home">
             <Header />
+            <Search />
             <Cart />
             <main className="home__items clothes">
                 <p className="clothes__amount">{quantity} Itens</p>

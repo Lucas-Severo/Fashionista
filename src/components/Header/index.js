@@ -12,13 +12,18 @@ export default function Header() {
         document.querySelector("body").classList.add("app--scroll-lock");
     }
 
+    function showSearch() {
+        document.querySelector(".search").classList.toggle("search--visible");
+        document.querySelector("body").classList.add("app--scroll-lock");
+    }
+
     return (
         <header className="header">
             <div className="header__items">
                 <Link className="header__logo" to="/">Fashionista</Link>
                 <div className="header__buttons">
                     <div className="header__search">
-                        <FontAwesomeIcon icon={faSearch}/>
+                        <FontAwesomeIcon icon={faSearch} onClick={showSearch}/>
                     </div>
                     <div className="header__cart">
                         <FontAwesomeIcon icon={faCartPlus} onClick={showCart}/>
