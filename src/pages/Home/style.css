@@ -31,6 +31,16 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
+}
+
+.clothes__image-container {
+    position: relative;
+    transition: transform .3s;
+}
+
+.clothes__image-container:hover {
+    transform: scale(1.05);
 }
 
 .clothes__image {
@@ -39,11 +49,19 @@ body {
     height: 350px;
     object-fit: cover;
     cursor: pointer;
-    transition: transform .3s;
 }
 
-.clothes__image:hover {
-    transform: scale(1.05);
+.clothes__off {
+    background-color: #1A1717;
+    color: #FFF;
+    font-size: 1em;
+    font-weight: bold;
+    width: 52px;
+    height: 26px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.6em;
 }
 
 .clothes__title {
@@ -54,6 +72,17 @@ body {
     vertical-align: middle;
     flex: 1;
     text-transform: uppercase;
+}
+
+.clothes__prices {
+    display: flex;
+    align-items: center;
+}
+
+.clothes__price--regular {
+    text-decoration: line-through;
+    color: #6B6B6B;
+    margin-right: 1em;
 }
 
 .clothes__price {
