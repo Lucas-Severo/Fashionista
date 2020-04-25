@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
 
-import api from '../../services/api';
 import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-export default function Product(props) {
-    const [ products, setProducts ] = useState([]);
+function Product({products, props}) {
     const [ id, setId ] = useState(null);
 
     useEffect(() => {
         async function getData() {
-            const response = await api.get();
-            setProducts(response.data.products);
             setId(props.match.params.id);
         }
         getData();
@@ -57,3 +54,5 @@ export default function Product(props) {
         </div>
     );
 }
+
+export default connect((state, props) => ({products: state.products, props}))(Product);

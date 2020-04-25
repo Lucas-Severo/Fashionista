@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import * as actionCreators from '../../redux/actions';
 
 import './style.css';
 
@@ -9,24 +12,13 @@ import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
 
-import api from '../../services/api';
-
-export default function Home() {
-    const [ products, setProducts ] = useState([]);
-    const [ quantity, setQuantity ] = useState(0);
-
-    async function getData() {
-        const response = await api.get();
-        setProducts(response.data.products);
-        setQuantity(response.data.products.length);
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
-
+function Home({products, quantity}) {
     return (
+
         <div className="home">
+            {
+                console.log(products)
+            }
             <Header />
             <Search />
             <Cart />
@@ -81,3 +73,5 @@ export default function Home() {
         </div>
     );
 }
+
+export default connect((state) => ({products: state.products, quantity: state.products.length}), actionCreators)(Home);

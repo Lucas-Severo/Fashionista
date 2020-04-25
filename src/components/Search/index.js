@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './style.css';
@@ -6,19 +7,8 @@ import './style.css';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import api from '../../services/api';
-
-export default function Search() {
+function Search({ items }) {
     const [products, setProducts] = useState([]);
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        async function getItems() {
-            const response = await api.get();
-            setItems(response.data.products);
-        }
-        getItems();
-    }, []);
 
     function hideSearch() {
         document.querySelector(".search").classList.remove("search--visible");
@@ -74,3 +64,5 @@ export default function Search() {
         </div>
     );
 }
+
+export default connect(state => ({items: state.products}))(Search);
