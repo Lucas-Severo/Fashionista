@@ -13,6 +13,7 @@ import notFoundImage from '../../assets/notfound.png';
 
 function Product({products, props, getProducts}) {
     const [ id, setId ] = useState(null);
+    const [ size, setSize ] = useState(null);
 
     useEffect(() => {
         async function getData() {
@@ -20,6 +21,27 @@ function Product({products, props, getProducts}) {
         }
         getData();
     }, [props.match.params.id]);
+
+    const saveProduct = (ev) => {
+        ev.preventDefault();
+        console.log("Item selecionado: ");
+        console.log(id);
+        console.log(size);
+    }
+
+    const handleClick = () => {
+        if(size == null) {
+            document.querySelectorAll(".size__field").forEach(element => {
+                element.style.border = "2px solid #f55"; 
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll(".size__field").forEach(element => {
+                    element.style.border = "1px solid #ccc";
+                });
+            }, 2000);
+        }
+    }
 
     return (
         <div className="product" onLoad={() => getProducts()}>
@@ -40,16 +62,16 @@ function Product({products, props, getProducts}) {
                     </div>
                     <p className="product__choose">Escolha o tamanho:</p>
                         
-                    <form className="product__form">
+                    <form className="product__form" onSubmit={saveProduct}>
                         <div className="product__sizes sizes">
                             {product.sizes.map(({size}) => (
                                 <div key={size} className="size__field">
-                                    <input className="size__button" required name="sizes" value={size} type="radio" id={size}/>
+                                    <input className="size__button" onChange={e => {setSize(e.target.value)}} required name="sizes" value={size} type="radio" id={size}/>
                                     <label className="size__name" htmlFor={size}>{size}</label>
                                 </div>
                             ))}
                         </div>
-                        <button type="submit" className="product__save">Adicionar à sacola</button>
+                        <button onClick={handleClick} type="submit" className="product__save">Adicionar à sacola</button>
                     </form>
                 </div>
             ))}
@@ -62,4 +84,4 @@ const mapStateToProps = (state, props) => ({
   props
 });
 
-export default connect((state, props) => (mapStateToProps), actionCreator)(Product);
+export default connect((mapStateToProps), actionCreator)(Product);
