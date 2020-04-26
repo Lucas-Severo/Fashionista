@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import * as actionCreator from '../../redux/actions';
@@ -11,16 +11,15 @@ import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-function Product({products, props, getProducts}) {
-    const [ id, setId ] = useState(null);
-    const [ size, setSize ] = useState(null);
+function Product({products, id, size, props, getProducts, updateId, setSize}) {
 
     useEffect(() => {
         async function getData() {
-            setId(props.match.params.id);
+            updateId(props.match.params.id);
+            setSize(null);
         }
         getData();
-    }, [props.match.params.id]);
+    }, [props.match.params.id, updateId, setSize]);
 
     const saveProduct = (ev) => {
         ev.preventDefault();
@@ -81,6 +80,8 @@ function Product({products, props, getProducts}) {
 
 const mapStateToProps = (state, props) => ({
   products: state.products,
+  id: state.id,
+  size: state.size,
   props
 });
 

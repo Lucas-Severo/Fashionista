@@ -1,17 +1,28 @@
 let defaultState = {
-    products: []
+    products: [],
+    id: null,
+    size: null
 }
 
 function reducer(state = defaultState, action) {
-    if(action.type === "SET_PRODUCTS") {
-        return {
-            ...state,
-            products: action.products
-        }
-    } else {
-        return {
-            ...state
-        }
+    switch(action.type) {
+        case "SET_PRODUCTS": 
+            return {
+                ...state,
+                products: action.products
+            }
+        case "UPDATE_ID":
+            return {
+                ...state,
+                id: action.id
+            }
+        case "SET_SIZE":
+            return {
+                ...state,
+                size: action.size
+            }
+        default:
+            return state
     }
 }
 

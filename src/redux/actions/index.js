@@ -13,3 +13,17 @@ export function setProducts(products) {
         products: products
     }
 }
+
+export function updateId(id) {
+    return {
+        type: "UPDATE_ID",
+        id: id
+    }
+}
+
+export function setSize(size) {
+    return {
+        type: "SET_SIZE",
+        size: size
+    }
+}
