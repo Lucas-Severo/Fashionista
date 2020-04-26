@@ -11,7 +11,7 @@ import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-function Product({products, id, size, props, getProducts, updateId, setSize}) {
+function Product({products, id, size, props, updateId, setSize, cartProducts, setCartProducts}) {
 
     useEffect(() => {
         async function getData() {
@@ -23,9 +23,40 @@ function Product({products, id, size, props, getProducts, updateId, setSize}) {
 
     const saveProduct = (ev) => {
         ev.preventDefault();
-        console.log("Item selecionado: ");
-        console.log(id);
-        console.log(size);
+        let item = products.filter(product => {
+            if(product.code_color === String(id)) {
+                return product;
+            }
+            return null
+        });
+
+        item = {...item[0], size: size}
+
+        let productExists;
+
+        for(let product of cartProducts) {
+            if(product.size === item.size &&
+                product.code_color === item.code_color) {
+                productExists = true;
+                break;
+            }
+            productExists = false;
+        }
+
+        if(productExists) {
+            setCartProducts(cartProducts.map(product => {
+                if(product.code_color === item.code_color &&
+                    product.size === item.size) {
+                    product.qtd += 1;
+                }
+                return product;
+            }));
+        }
+
+        if(productExists !== true) {
+            item.qtd = 1
+            setCartProducts([...cartProducts, item]);
+        }
     }
 
     const handleClick = () => {
@@ -43,7 +74,7 @@ function Product({products, id, size, props, getProducts, updateId, setSize}) {
     }
 
     return (
-        <div className="product" onLoad={() => getProducts()}>
+        <div className="product">
             <Header />
             <Search />
             <Cart />
@@ -82,6 +113,7 @@ const mapStateToProps = (state, props) => ({
   products: state.products,
   id: state.id,
   size: state.size,
+  cartProducts: state.cartProducts,
   props
 });
 

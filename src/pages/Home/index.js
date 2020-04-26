@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actionCreator from '../../redux/actions';
-
 import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
@@ -12,10 +10,10 @@ import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
 
-function Home({products, quantity, getProducts}) {
+function Home({products, quantity}) {
     return (
 
-        <div className="home" onLoad={() => getProducts()}>
+        <div className="home">
             <Header />
             <Search />
             <Cart />
@@ -76,4 +74,4 @@ const mapStateToProps = (state) => ({
   quantity: state.products.length,
 });
 
-export default connect(mapStateToProps, actionCreator)(Home);
+export default connect(mapStateToProps)(Home);

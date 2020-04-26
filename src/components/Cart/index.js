@@ -1,13 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './style.css';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import image3 from '../../pages/Home/assets/image3.png';
-
-export default function Cart() {
+function Cart({cartProducts}) {
     function hideCart() {
         document.querySelector(".cart").classList.remove("cart--visible");
         document.querySelector("body").classList.remove("app--scroll-lock");
@@ -24,63 +23,31 @@ export default function Cart() {
                 </div>
             </header>
             <main className="cart__list">
-                <div className="cart__item item">
-                    <img src={image3} alt="" className="item__image"/>
-                    <p className="item__title">Blazzer Cinza</p>
-                    <p className="item__size">Tam: P</p>
-                    <p className="item__price">R$48,50</p>
-                    <p className="item__installments">2x de R$24,50</p>
-                    <p className="item__remove">Remover Item</p>
+                {
+                    cartProducts.map(cartProduct => (
+                    <div className="cart__item item" key={cartProduct.code_color}>
+                    <img src={cartProduct.image} alt="" className="item__image"/>
+                        <p className="item__title">{cartProduct.name}</p>
+                        <p className="item__size">Size: {cartProduct.size}</p>
+                        <p className="item__price">{cartProduct.actual_price}</p>
+                        <p className="item__installments">{cartProduct.installments}</p>
+                        <p className="item__remove">Remover Item</p>
 
-                    <div className="item__info">
-                        <button className="item__decreases">-</button>
-                        <p className="item__amount">0</p>
-                        <button className="item__increases">+</button>
+                        <div className="item__info">
+                            <button className="item__decreases">-</button>
+                            <p className="item__amount">{cartProduct.qtd}</p>
+                            <button className="item__increases">+</button>
+                        </div>
                     </div>
-                </div>
-                <div className="cart__item item">
-                    <img src={image3} alt="" className="item__image"/>
-                    <p className="item__title">Blazzer Cinza</p>
-                    <p className="item__size">Tam: P</p>
-                    <p className="item__price">R$48,50</p>
-                    <p className="item__installments">2x de R$24,50</p>
-                    <p className="item__remove">Remover Item</p>
-
-                    <div className="item__info">
-                        <button className="item__decreases">-</button>
-                        <p className="item__amount">0</p>
-                        <button className="item__increases">+</button>
-                    </div>
-                </div>
-                <div className="cart__item item">
-                    <img src={image3} alt="" className="item__image"/>
-                    <p className="item__title">Blazzer Cinza</p>
-                    <p className="item__size">Tam: P</p>
-                    <p className="item__price">R$48,50</p>
-                    <p className="item__installments">2x de R$24,50</p>
-                    <p className="item__remove">Remover Item</p>
-
-                    <div className="item__info">
-                        <button className="item__decreases">-</button>
-                        <p className="item__amount">0</p>
-                        <button className="item__increases">+</button>
-                    </div>
-                </div>
-                <div className="cart__item item">
-                    <img src={image3} alt="" className="item__image"/>
-                    <p className="item__title">Blazzer Cinza</p>
-                    <p className="item__size">Tam: P</p>
-                    <p className="item__price">R$48,50</p>
-                    <p className="item__installments">2x de R$24,50</p>
-                    <p className="item__remove">Remover Item</p>
-
-                    <div className="item__info">
-                        <button className="item__decreases">-</button>
-                        <p className="item__amount">0</p>
-                        <button className="item__increases">+</button>
-                    </div>
-                </div>
+                    ))
+                }
             </main>
         </div>
     );
 }
+
+const mapStateToProps = state => ({
+  cartProducts: state.cartProducts
+});
+
+export default connect(mapStateToProps)(Cart);

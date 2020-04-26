@@ -34,3 +34,10 @@ export function setSearchItems(items) {
         items: items
     }
 }
+
+export function setCartProducts(cartProducts) {
+    return {
+        type: "SET_CART_PRODUCTS",
+        cartProducts: cartProducts
+    }
+}
