@@ -27,3 +27,10 @@ export function setSize(size) {
         size: size
     }
 }
+
+export function setSearchItems(items) {
+    return {
+        type: "SET_SEARCH_ITEMS",
+        items: items
+    }
+}

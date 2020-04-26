@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import * as actionCreator from '../../redux/actions';
 
 import './style.css';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Search({ items }) {
-    const [products, setProducts] = useState([]);
+function Search({ products, items, setSearchItems}) {
 
     function hideSearch() {
         document.querySelector(".search").classList.remove("search--visible");
@@ -16,16 +17,16 @@ function Search({ items }) {
     }
 
     function getValue(value) {
-        const products = [];
+        const items = [];
         if(value) {
-            const regex = new RegExp(`^${value}`, "gi");
-            for(let item of items) {
-                if(item.name.search(regex) !== -1) {
-                    products.push(item)
+            const regex = new RegExp(`${value}`, "gi");
+            for(let product of products) {
+                if(product.name.search(regex) !== -1) {
+                    items.push(product)
                 }
             }
         }
-        setProducts(products);
+        setSearchItems(items);
     }
 
     return (
@@ -43,10 +44,10 @@ function Search({ items }) {
                     <input type="text" onChange={e => getValue(e.target.value)}/>
                 </div>
                 <div className="search__count">
-                    {products.length} Itens
+                    {items.length} Itens
                 </div>
 
-                { products.map(product => (
+                { items.map(product => (
                 <div key={product.code_color} className="search__item">
                     <img src={product.image} alt={product.name} className="search__image"/>
                     <Link 
@@ -65,4 +66,10 @@ function Search({ items }) {
     );
 }
 
-export default connect(state => ({items: state.products}))(Search);
+const mapStateToProps = (state)  => ({
+    products: state.products,
+    items: state.items,
+});
+
+
+export default connect(mapStateToProps, actionCreator)(Search);

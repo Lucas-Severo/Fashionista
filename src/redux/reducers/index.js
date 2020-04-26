@@ -1,7 +1,8 @@
 let defaultState = {
     products: [],
     id: null,
-    size: null
+    size: null,
+    items: []
 }
 
 function reducer(state = defaultState, action) {
@@ -20,6 +21,11 @@ function reducer(state = defaultState, action) {
             return {
                 ...state,
                 size: action.size
+            }
+        case "SET_SEARCH_ITEMS":
+            return {
+                ...state,
+                items: action.items
             }
         default:
             return state
