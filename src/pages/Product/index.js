@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import * as actionCreator from '../../redux/actions';
+
 import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
@@ -9,7 +11,7 @@ import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-function Product({products, props}) {
+function Product({products, props, getProducts}) {
     const [ id, setId ] = useState(null);
 
     useEffect(() => {
@@ -20,7 +22,7 @@ function Product({products, props}) {
     }, [props.match.params.id]);
 
     return (
-        <div className="product">
+        <div className="product" onLoad={() => getProducts()}>
             <Header />
             <Search />
             <Cart />
@@ -55,4 +57,9 @@ function Product({products, props}) {
     );
 }
 
-export default connect((state, props) => ({products: state.products, props}))(Product);
+const mapStateToProps = (state, props) => ({
+  products: state.products,
+  props
+});
+
+export default connect((state, props) => (mapStateToProps), actionCreator)(Product);

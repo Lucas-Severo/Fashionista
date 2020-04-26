@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actionCreators from '../../redux/actions';
+import * as actionCreator from '../../redux/actions';
 
 import './style.css';
 
@@ -12,13 +12,10 @@ import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
 
-function Home({products, quantity}) {
+function Home({products, quantity, getProducts}) {
     return (
 
-        <div className="home">
-            {
-                console.log(products)
-            }
+        <div className="home" onLoad={() => getProducts()}>
             <Header />
             <Search />
             <Cart />
@@ -74,4 +71,9 @@ function Home({products, quantity}) {
     );
 }
 
-export default connect((state) => ({products: state.products, quantity: state.products.length}), actionCreators)(Home);
+const mapStateToProps = (state) => ({
+  products: state.products,
+  quantity: state.products.length,
+});
+
+export default connect(mapStateToProps, actionCreator)(Home);
