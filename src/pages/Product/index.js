@@ -23,6 +23,8 @@ function Product({products, id, size, props, updateId, setSize, cartProducts, se
 
     const saveProduct = (ev) => {
         ev.preventDefault();
+
+        // pegar o produto
         let item = products.filter(product => {
             if(product.code_color === String(id)) {
                 return product;
@@ -32,8 +34,18 @@ function Product({products, id, size, props, updateId, setSize, cartProducts, se
 
         item = {...item[0], size: size}
 
-        let productExists;
+        // pegar o código referente ao tamanho do produto
+        // (sku)
+        const codigo = item.sizes.filter(size_name => {
+            if(size_name.size === size)
+                return size_name.sku;
+            return null;
+        });
 
+        item = { ...item, sku: codigo[0].sku }
+
+        // check if the product is already in cart
+        let productExists;
         for(let product of cartProducts) {
             if(product.size === item.size &&
                 product.code_color === item.code_color) {
@@ -43,6 +55,7 @@ function Product({products, id, size, props, updateId, setSize, cartProducts, se
             productExists = false;
         }
 
+        // case true the product quantity is incremented
         if(productExists) {
             setCartProducts(cartProducts.map(product => {
                 if(product.code_color === item.code_color &&
@@ -53,6 +66,7 @@ function Product({products, id, size, props, updateId, setSize, cartProducts, se
             }));
         }
 
+        // else the product is added to the cart
         if(productExists !== true) {
             item.qtd = 1
             setCartProducts([...cartProducts, item]);

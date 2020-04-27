@@ -65,7 +65,7 @@ function Cart({cartProducts, setCartProducts}) {
             <main className="cart__list">
                 {
                     cartProducts.map(cartProduct => (
-                    <div className="cart__item item" key={cartProduct.code_color}>
+                    <div className="cart__item item" key={cartProduct.sku}>
                     <img src={cartProduct.image} alt="" className="item__image"/>
                         <Link 
                             to={`/product/${cartProduct.code_color}`} 
@@ -86,7 +86,7 @@ function Cart({cartProducts, setCartProducts}) {
                 }
             </main>
             <footer className="cart__price">
-                300reais
+                
             </footer>
         </div>
     );
