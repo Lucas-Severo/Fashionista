@@ -11,6 +11,7 @@ body {
 .home__items {
     width: 80%;
     margin: 0 auto;
+    padding: 93px 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 37px;

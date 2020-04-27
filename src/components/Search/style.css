@@ -1,7 +1,7 @@
 .search {
     opacity: 0;
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 437px;
     right: -100%;

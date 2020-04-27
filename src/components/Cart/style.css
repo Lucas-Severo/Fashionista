@@ -1,7 +1,7 @@
 .cart {
     opacity: 0;
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 437px;
     right: -100%;
@@ -64,6 +64,10 @@
      "image . ."
      "remove . .";
     border-bottom: 1px solid #ccc;
+}
+
+.cart__item:last-child {
+    padding-bottom: 80px;
 }
 
 .item__image {

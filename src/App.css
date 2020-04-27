@@ -20,7 +20,7 @@ body::after {
     content: "";
     opacity: 0;
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     background: transparent;
     top: 0;
     left: 0;
@@ -30,9 +30,6 @@ body::after {
     z-index: 2;
 }
 
-.app--scroll-lock {
-    overflow: hidden;
-}
 
 .app--scroll-lock::after {
     content: "";

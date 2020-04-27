@@ -5,7 +5,7 @@
 .product__container {
     width: 80%;
     margin: 0 auto;
-    padding: 2em 0;
+    padding-top: 100px;
     display: grid;
     grid-template-columns: 400px 400px;
     grid-template-areas: 
