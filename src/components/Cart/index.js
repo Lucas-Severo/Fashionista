@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Cart({cartProducts, setCartProducts}) {
     function hideCart() {
         document.querySelector(".cart").classList.remove("cart--visible");
-        document.querySelector("body").classList.remove("app--scroll-lock");
+        document.querySelector(".app").classList.remove("app--scroll-lock");
     }
 
     function decreases(id, size) {

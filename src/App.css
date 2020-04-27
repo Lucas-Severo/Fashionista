@@ -16,7 +16,7 @@ a{
     text-decoration: none;
 }
 
-body::after {
+.app::after {
     content: "";
     opacity: 0;
     visibility: hidden;

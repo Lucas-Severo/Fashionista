@@ -13,7 +13,7 @@ function Search({ products, items, setSearchItems}) {
 
     function hideSearch() {
         document.querySelector(".search").classList.remove("search--visible");
-        document.querySelector("body").classList.remove("app--scroll-lock");
+        document.querySelector(".app").classList.remove("app--scroll-lock");
     }
 
     function getValue(value) {

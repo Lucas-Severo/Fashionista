@@ -9,12 +9,12 @@ export default function Header() {
 
     function showCart() {
         document.querySelector(".cart").classList.toggle("cart--visible");
-        document.querySelector("body").classList.add("app--scroll-lock");
+        document.querySelector(".app").classList.add("app--scroll-lock");
     }
 
     function showSearch() {
         document.querySelector(".search").classList.toggle("search--visible");
-        document.querySelector("body").classList.add("app--scroll-lock");
+        document.querySelector(".app").classList.add("app--scroll-lock");
     }
 
     return (

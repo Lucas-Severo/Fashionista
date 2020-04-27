@@ -12,7 +12,9 @@ getProducts()(store.dispatch);
 
 function App() {
   return (
-    <Routes store={store}/>
+    <div className="app">
+      <Routes store={store}/>
+    </div>
   );
 }
 
