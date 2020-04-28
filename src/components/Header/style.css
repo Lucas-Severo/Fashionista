@@ -36,12 +36,32 @@
 
 .header__search,
 .header__cart {
+    position: relative;
     font-size: 30px;
     padding-left: 21px;
 }
 
 .header__search svg,
 .header__cart svg {
+    cursor: pointer;
+}
+
+.header__amount {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: -0.5rem;
+    color: white;
+    font-weight: bold;
+    background: #cf3838;
+    text-align: center;
+    font-size: 0.5em;
+    line-height: 0.7em;
+    width: 1.9em;
+    height: 1.9em;
+    border-radius: 50%;
     cursor: pointer;
 }
 

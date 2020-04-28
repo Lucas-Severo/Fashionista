@@ -11,7 +11,7 @@ import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-function Product({products, id, size, props, updateId, setSize, cartProducts, setCartProducts}) {
+function Product({products, id, size, productsAmount, props, updateId, setSize, cartProducts, setCartProducts, setCartProductsAmount}) {
 
     useEffect(() => {
         async function getData() {
@@ -70,7 +70,24 @@ function Product({products, id, size, props, updateId, setSize, cartProducts, se
         if(productExists !== true) {
             item.qtd = 1
             setCartProducts([...cartProducts, item]);
+            setCartProductsAmount(productsAmount+1);
         }
+
+        if(productExists === true) {
+            calculateProductsAmount();
+        }
+    }
+
+    const calculateProductsAmount = () => {
+        const total = cartProducts.map(product => {
+            return product.qtd;
+        });
+
+        const qtd = total.reduce((accumulator, number) => {
+            return accumulator + number;
+        }, 0);
+
+        setCartProductsAmount(qtd);
     }
 
     const handleClick = () => {
@@ -128,6 +145,7 @@ const mapStateToProps = (state, props) => ({
   id: state.id,
   size: state.size,
   cartProducts: state.cartProducts,
+  productsAmount: state.productsAmount,
   props
 });
 

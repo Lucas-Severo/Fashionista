@@ -4,6 +4,7 @@ let defaultState = {
     id: null,
     size: null,
     items: [],
+    productsAmount: 0
 }
 
 function reducer(state = defaultState, action) {
@@ -32,6 +33,11 @@ function reducer(state = defaultState, action) {
             return {
                 ...state,
                 cartProducts: action.cartProducts
+            }
+        case "SET_CART_PRODUCTS_AMOUNT":
+            return {
+                ...state,
+                productsAmount: action.productsAmount
             }
         default:
             return state

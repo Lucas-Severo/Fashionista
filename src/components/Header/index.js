@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './style.css';
 
 import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Header() {
+function Header({productsAmount}) {
 
     function showCart() {
         document.querySelector(".cart").classList.toggle("cart--visible");
@@ -27,9 +28,16 @@ export default function Header() {
                     </div>
                     <div className="header__cart">
                         <FontAwesomeIcon icon={faCartPlus} onClick={showCart}/>
+                        <div className="header__amount" onClick={showCart}>{productsAmount}</div>
                     </div>
                 </div>
             </div>
         </header>
     );
 }
+
+const mapStateToProps = state => ({
+  productsAmount: state.productsAmount
+});
+
+export default connect(mapStateToProps)(Header)

@@ -41,3 +41,10 @@ export function setCartProducts(cartProducts) {
         cartProducts: cartProducts
     }
 }
+
+export function setCartProductsAmount(amount) {
+    return {
+        type: "SET_CART_PRODUCTS_AMOUNT",
+        productsAmount: amount
+    }
+}
