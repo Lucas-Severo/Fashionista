@@ -9,7 +9,7 @@ import './style.css';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Cart({cartProducts, setCartProducts}) {
+function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmount}) {
     function hideCart() {
         document.querySelector(".cart").classList.remove("cart--visible");
         document.querySelector(".app").classList.remove("app--scroll-lock");
@@ -20,6 +20,7 @@ function Cart({cartProducts, setCartProducts}) {
             if(product.code_color === id &&
                 product.size === size) {
                 product.qtd -= 1;
+                setCartProductsAmount(productsAmount - 1);
                 return product;
             }
             return product
@@ -33,6 +34,7 @@ function Cart({cartProducts, setCartProducts}) {
             if(product.code_color === id &&
                 product.size === size) {
                 product.qtd += 1;
+                setCartProductsAmount(productsAmount + 1);
                 return product;
             }
             return product;
@@ -46,6 +48,7 @@ function Cart({cartProducts, setCartProducts}) {
             if(!((product.code_color === id) && (product.size === size))) {
                 return product;
             }
+            setCartProductsAmount(productsAmount - product.qtd);
             return null;
         });
 
@@ -59,7 +62,7 @@ function Cart({cartProducts, setCartProducts}) {
                     <div className="cart__close" onClick={hideCart}>
                         <FontAwesomeIcon icon={ faArrowLeft }/>
                     </div>
-                    <p className="cart__title">Sacola</p>
+                <p className="cart__title">Sacola ({productsAmount})</p>
                 </div>
             </header>
             <main className="cart__list">
@@ -93,7 +96,8 @@ function Cart({cartProducts, setCartProducts}) {
 }
 
 const mapStateToProps = state => ({
-  cartProducts: state.cartProducts
+  cartProducts: state.cartProducts,
+  productsAmount: state.productsAmount
 });
 
 export default connect(mapStateToProps, actionCreator)(Cart);
