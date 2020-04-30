@@ -4,7 +4,8 @@ let defaultState = {
     id: null,
     size: null,
     items: [],
-    productsAmount: 0
+    productsAmount: 0,
+    totalPurchase: 0.0
 }
 
 function reducer(state = defaultState, action) {
@@ -38,6 +39,11 @@ function reducer(state = defaultState, action) {
             return {
                 ...state,
                 productsAmount: action.productsAmount
+            }
+        case "SET_TOTAL_PURCHASE":
+            return {
+                ...state,
+                totalPurchase: action.totalPurchase
             }
         default:
             return state

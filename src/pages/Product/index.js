@@ -11,7 +11,7 @@ import './style.css';
 
 import notFoundImage from '../../assets/notfound.png';
 
-function Product({products, id, size, productsAmount, props, updateId, setSize, cartProducts, setCartProducts, setCartProductsAmount}) {
+function Product({setTotalPurchase, products, id, size, productsAmount, props, updateId, setSize, cartProducts, setCartProducts, setCartProductsAmount}) {
 
     useEffect(() => {
         async function getData() {
@@ -64,30 +64,26 @@ function Product({products, id, size, productsAmount, props, updateId, setSize, 
                 }
                 return product;
             }));
+            calculateTotalPurchase();
         }
 
         // else the product is added to the cart
         if(productExists !== true) {
             item.qtd = 1
             setCartProducts([...cartProducts, item]);
-            setCartProductsAmount(productsAmount+1);
+            calculateTotalPurchase([...cartProducts, item]);
         }
 
-        if(productExists === true) {
-            calculateProductsAmount();
-        }
+        setCartProductsAmount(productsAmount+1);
     }
 
-    const calculateProductsAmount = () => {
-        const total = cartProducts.map(product => {
-            return product.qtd;
-        });
-
-        const qtd = total.reduce((accumulator, number) => {
-            return accumulator + number;
-        }, 0);
-
-        setCartProductsAmount(qtd);
+    function calculateTotalPurchase(array = cartProducts) {
+        const total = array.reduce((accumulator, value) => {
+            const parsedValue = parseFloat(value.actual_price.replace(",", ".")
+                                                        .substring(2)).toFixed(2);
+            return accumulator + (parsedValue * value.qtd);
+        }, 0.0);
+        setTotalPurchase(total);
     }
 
     const handleClick = () => {

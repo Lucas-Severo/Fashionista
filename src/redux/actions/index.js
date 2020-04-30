@@ -48,3 +48,10 @@ export function setCartProductsAmount(amount) {
         productsAmount: amount
     }
 }
+
+export function setTotalPurchase(total) {
+    return {
+        type: "SET_TOTAL_PURCHASE",
+        totalPurchase: total
+    }
+}

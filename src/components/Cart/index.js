@@ -9,10 +9,21 @@ import './style.css';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmount}) {
+function Cart({cartProducts, setCartProducts, 
+               productsAmount, setCartProductsAmount,
+               totalPurchase, setTotalPurchase}) {
     function hideCart() {
         document.querySelector(".cart").classList.remove("cart--visible");
         document.querySelector(".app").classList.remove("app--scroll-lock");
+    }
+
+    function calculateTotalPurchase(array = cartProducts) {
+        const total = array.reduce((accumulator, value) => {
+            const parsedValue = parseFloat(value.actual_price.replace(",", ".")
+                                                        .substring(2)).toFixed(2);
+            return accumulator + (parsedValue * value.qtd);
+        }, 0.0);
+        setTotalPurchase(total);
     }
 
     function decreases(id, size) {
@@ -27,6 +38,7 @@ function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmo
         });
 
         setCartProducts(item);
+        calculateTotalPurchase();
     }
 
     function increases(id, size) {
@@ -41,6 +53,7 @@ function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmo
         });
 
         setCartProducts(item);
+        calculateTotalPurchase();
     }
 
     function removeItem(id, size) {
@@ -53,6 +66,7 @@ function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmo
         });
 
         setCartProducts(items);
+        calculateTotalPurchase(items);
     }
 
     return (
@@ -89,7 +103,7 @@ function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmo
                 }
             </main>
             <footer className="cart__price">
-                
+                Subtotal: R${totalPurchase.toFixed(2)}
             </footer>
         </div>
     );
@@ -97,7 +111,8 @@ function Cart({cartProducts, setCartProducts, productsAmount, setCartProductsAmo
 
 const mapStateToProps = state => ({
   cartProducts: state.cartProducts,
-  productsAmount: state.productsAmount
+  productsAmount: state.productsAmount,
+  totalPurchase: state.totalPurchase
 });
 
 export default connect(mapStateToProps, actionCreator)(Cart);
