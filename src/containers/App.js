@@ -3,9 +3,9 @@ import React from 'react';
 import './App.css';
 import Routes from './routes';
 
-import store from './redux/store';
+import store from '../redux/store';
 
-import { getProducts } from './redux/actions';
+import { getProducts } from '../redux/actions';
 
 // get the products
 getProducts()(store.dispatch);
