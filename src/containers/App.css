@@ -10,6 +10,8 @@ html, body {
     position: relative;
     height: 100vh;
     overflow-x: hidden;
+    z-index: 2;
+    color: #000;
 }
 
 a{
@@ -33,7 +35,7 @@ a{
 
 .app--scroll-lock::after {
     content: "";
-    opacity: 1 !important;
+    opacity: 0.75;
     visibility: visible !important;
-    background-color: rgba(0, 0, 0, 0.48) !important;
+    background: radial-gradient(ellipse at center,#7a7a7a 0,#000 100%);
 }

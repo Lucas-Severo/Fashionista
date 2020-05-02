@@ -1,6 +1,6 @@
 body {
     height: 100%;
-    background-color: #F2F2F2;
+    background-color: #f8f8f8;
 }
 
 .home {
@@ -14,15 +14,15 @@ body {
     padding: 93px 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 37px;
+    grid-gap: 20px;
 }
 
 .clothes__amount {
     padding: 18px 0;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ABAAAA;
+    font-size: 24px;
+    color: #000;
     grid-column: 1 / 5;
+    background-color: #eee;
 }
 
 .clothes__item {
@@ -57,17 +57,20 @@ body {
     color: #FFF;
     font-size: 1em;
     font-weight: bold;
-    width: 52px;
-    height: 26px;
+    width: 30px;
+    height: 15px;
     position: absolute;
     top: 0;
     right: 0;
     padding: 0.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .clothes__title {
-    color: black;
-    font-size: 20px;
+    color: #212529;
+    font-size: 16px;
     font-weight: bold;
     padding: 19px 0 12px;
     vertical-align: middle;
@@ -87,7 +90,7 @@ body {
 }
 
 .clothes__price {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 @media (max-width: 768px) {

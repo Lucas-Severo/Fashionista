@@ -3,7 +3,7 @@
     height: 93px;
     background-color: #FFF;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
 }
 
 .header__items {
@@ -37,7 +37,7 @@
 .header__search,
 .header__cart {
     position: relative;
-    font-size: 30px;
+    font-size: 25px;
     padding-left: 21px;
 }
 

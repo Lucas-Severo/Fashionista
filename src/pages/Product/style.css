@@ -40,10 +40,13 @@
 .product__price {
     margin-right: 1em;
     font-size: 1.5em;
+    font-weight: bold;
 }
 
 .product__installments {
     margin-right: 1em;
+    font-weight: bold;
+    color: #888;
 }
 
 .product__choose {

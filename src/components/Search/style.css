@@ -25,6 +25,11 @@
     background-color: #FFF;
 }
 
+.search__header--title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .search__items {
     width: 80%;
     height: 100%;
@@ -35,8 +40,9 @@
 }
 
 .search__close {
-    font-size: 28px;
+    font-size: 22px;
     justify-self: center;
+    margin-right: 20px;
     cursor: pointer;
 }
 
@@ -47,7 +53,7 @@
 }
 
 .search__list {
-    background-color: #F2F2F2;
+    background-color: #f9f9f9;
     width: 100%;
     height: calc(100% - 93px);
     overflow-y: scroll;
@@ -59,10 +65,12 @@
     padding: 1em 0;
     width: 60%;
     margin: 0 auto;
+    width: 100%;
+    background-color: #f2f2f2;
 }
 
 .searchBox input {
-    width: 100%;
+    width: 60%;
     border-radius: 4px;
     padding: 0.6em 1em;
     color: #000;
@@ -74,36 +82,46 @@
     padding: 20px;
     display: grid;
     grid-template-areas:
-     "image title"
-     "image price"
-     "image installments";
+     "image title price"
+     "image . installments";
     border-bottom: 1px solid #ccc;
 }
 
 .search__image {
     grid-area: image;
     width: 104px;
-    height: 150px;
+    height: 120px;
 }
 
 .search__title {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     grid-area: title;
     color: black;
     text-decoration: none;
+    text-align: left;
 }
 
 .search__price {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     grid-area: price;
+    text-align: center;
 }
 
 .search__installments {
+    font-size: 16px;
     color: #6D6D6D;
     grid-area: installments;
+}
+
+.no_items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    font-size: 22px;
 }
 
 

@@ -9,6 +9,8 @@ import './style.css';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import imageNotFound from '../../assets/notfound.png';
+
 function Search({ products, items, setSearchItems}) {
 
     function hideSearch() {
@@ -19,7 +21,7 @@ function Search({ products, items, setSearchItems}) {
     function getValue(value) {
         const items = [];
         if(value) {
-            const regex = new RegExp(`${value}`, "gi");
+            const regex = new RegExp(`^${value}`, "gi");
             for(let product of products) {
                 if(product.name.search(regex) !== -1) {
                     items.push(product)
@@ -36,30 +38,41 @@ function Search({ products, items, setSearchItems}) {
                     <div className="search__close" onClick={hideSearch}>
                         <FontAwesomeIcon icon={ faArrowLeft }/>
                     </div>
-                    <p className="search__title">Buscar Produtos</p>
+                    <p className="search__header--title">Buscar Produtos</p>
                 </div>
             </header>
             <main className="search__list">
                 <div className="searchBox">
                     <input type="text" onChange={e => getValue(e.target.value)}/>
                 </div>
-                <div className="search__count">
-                    {items.length} Itens
-                </div>
 
-                { items.map(product => (
-                <div key={product.code_color} className="search__item">
-                    <img src={product.image} alt={product.name} className="search__image"/>
-                    <Link 
-                        to={"/product/"+product.code_color} 
-                        onClick={hideSearch} className="search__title">
-                        {product.name}
-                    </Link>
-                    <p className="search__price">{product.actual_price}</p>
-                    <p className="search__installments">{product.installments}</p>
-                </div>
-                ))
-                }
+                { items.length > 0 ? (
+                    <>
+                    <div className="search__count">
+                        {items.length} Itens
+                    </div>
+                
+                    { items.map(product => (
+                    <div key={product.code_color} className="search__item">
+
+                        { product.image ? (
+                            <img src={product.image} alt={product.name} className="search__image"/>
+                        ) : (
+                            <img src={imageNotFound} alt={product.name} className="search__image"/>
+                        )}
+                        <Link 
+                            to={"/product/"+product.code_color} 
+                            onClick={hideSearch} className="search__title">
+                            {product.name}
+                        </Link>
+                        <p className="search__price">{product.actual_price}</p>
+                        <p className="search__installments">{product.installments}</p>
+                    </div>
+                    ))}
+                    </>
+                ) : (
+                    <div className="no_items">Nenhum item encontrado :\</div>
+                )}
 
             </main>
         </div>
