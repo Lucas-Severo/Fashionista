@@ -2,8 +2,12 @@ import api from '../../services/api';
 
 export function getProducts() {
     return (dispatch) => {
+        dispatch(setLoading(true));
         return api.get()
-        .then(response => dispatch(setProducts(response.data.products)));
+        .then(response => {
+            dispatch(setProducts(response.data.products))
+            dispatch(setLoading(false));
+        });
     }
 }
 
@@ -53,5 +57,12 @@ export function setTotalPurchase(total) {
     return {
         type: "SET_TOTAL_PURCHASE",
         totalPurchase: total
+    }
+}
+
+export function setLoading(isLoading) {
+    return {
+        type: "SET_LOADING",
+        isLoading: isLoading
     }
 }

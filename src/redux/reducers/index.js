@@ -5,7 +5,8 @@ let defaultState = {
     size: null,
     items: [],
     productsAmount: 0,
-    totalPurchase: 0.0
+    totalPurchase: 0.0,
+    isLoading: false
 }
 
 function reducer(state = defaultState, action) {
@@ -44,6 +45,11 @@ function reducer(state = defaultState, action) {
             return {
                 ...state,
                 totalPurchase: action.totalPurchase
+            }
+        case "SET_LOADING":
+            return {
+                ...state,
+                isLoading: action.isLoading
             }
         default:
             return state

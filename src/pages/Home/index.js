@@ -10,13 +10,17 @@ import Header from '../../components/Header';
 import Cart from '../../components/Cart';
 import Search from '../../components/Search';
 
-function Home({products, quantity}) {
+function Home({products, quantity, isLoading}) {
     return (
 
         <div className="home">
             <Header />
             <Search />
             <Cart />
+            {isLoading ? 
+                <div className="loading">
+                    <div className="loading__bar"></div>
+                </div>: (
             <main className="home__items clothes">
                 <p className="clothes__amount">{quantity} Itens</p>
                 {
@@ -65,6 +69,7 @@ function Home({products, quantity}) {
                 }
 
             </main>
+            )}
         </div>
     );
 }
@@ -72,6 +77,7 @@ function Home({products, quantity}) {
 const mapStateToProps = (state) => ({
   products: state.products,
   quantity: state.products.length,
+  isLoading: state.isLoading
 });
 
 export default connect(mapStateToProps)(Home);
