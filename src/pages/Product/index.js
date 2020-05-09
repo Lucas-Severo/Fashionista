@@ -63,14 +63,14 @@ function Product({setTotalPurchase, products, id, size, productsAmount, props, u
                     product.qtd += 1;
                 }
                 return product;
-            }));
+            }), productsAmount+1);
             calculateTotalPurchase();
         }
 
         // else the product is added to the cart
         if(productExists !== true) {
             item.qtd = 1
-            setCartProducts([...cartProducts, item]);
+            setCartProducts([...cartProducts, item], productsAmount+1);
             calculateTotalPurchase([...cartProducts, item]);
         }
 

@@ -3,11 +3,11 @@ import api from '../../services/api';
 export function getProducts() {
     return (dispatch) => {
         dispatch(setLoading(true));
-        return api.get()
-        .then(response => {
-            dispatch(setProducts(response.data.products))
-            dispatch(setLoading(false));
-        });
+            return api.get()
+            .then(response => {
+                dispatch(setProducts(response.data.products))
+                dispatch(setLoading(false));
+            });   
     }
 }
 
@@ -39,10 +39,11 @@ export function setSearchItems(items) {
     }
 }
 
-export function setCartProducts(cartProducts) {
+export function setCartProducts(cartProducts, amount) {
     return {
         type: "SET_CART_PRODUCTS",
-        cartProducts: cartProducts
+        cartProducts: cartProducts,
+        productsAmount: amount
     }
 }
 

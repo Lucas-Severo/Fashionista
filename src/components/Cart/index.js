@@ -39,7 +39,7 @@ function Cart({cartProducts, setCartProducts,
             return product
         });
 
-        setCartProducts(item);
+        setCartProducts(item, Number(productsAmount)-1);
         calculateTotalPurchase();
     }
 
@@ -54,20 +54,22 @@ function Cart({cartProducts, setCartProducts,
             return product;
         });
 
-        setCartProducts(item);
+        setCartProducts(item, Number(productsAmount)+1);
         calculateTotalPurchase();
     }
 
     function removeItem(id, size) {
+        let amount;
         const items = cartProducts.filter(product => {
             if(!((product.code_color === id) && (product.size === size))) {
                 return product;
             }
+            amount = productsAmount - product.qtd;
             setCartProductsAmount(productsAmount - product.qtd);
             return null;
         });
 
-        setCartProducts(items);
+        setCartProducts(items, amount);
         calculateTotalPurchase(items);
     }
 
