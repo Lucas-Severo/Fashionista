@@ -5,9 +5,9 @@ export function getProducts() {
         dispatch(setLoading(true));
             return api.get()
             .then(response => {
-                dispatch(setProducts(response.data.products))
+                dispatch(setProducts(response.data))
                 dispatch(setLoading(false));
-            });   
+            });
     }
 }
 

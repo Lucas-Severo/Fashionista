@@ -18,11 +18,13 @@ body {
 }
 
 .clothes__amount {
-    padding: 18px 0;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 0;
     font-size: 24px;
     color: #000;
     grid-column: 1 / 5;
-    background-color: #eee;
+    background-color: #fff;
 }
 
 .clothes__item {
@@ -122,6 +124,7 @@ body {
 
     .clothes__amount {
         grid-column: 1;
+        width: 80%;
         margin: 0 auto;
     }
 }

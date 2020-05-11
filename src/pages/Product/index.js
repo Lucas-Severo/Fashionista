@@ -107,18 +107,24 @@ function Product({setTotalPurchase, products, id, size, productsAmount, props, u
             <Cart />
             {products.filter(product => product.code_color === id).map(product => (
                 <div className="product__container" key={product.code_color}>
+                    <div className="product__image">
                     { product.image 
                         ? <img src={product.image} className="product__image" alt={product.name}/>
                         : <img src={notFoundImage} className="product__image" alt={product.name}/>
                     }
-                    
+                    {product.on_sale && 
+                        <div className="product__discount">{product.discount_percentage}</div>
+                    }
+                    </div>
                     <p className="product__name">{product.name}</p>
                     <div className="product__prices">
+                        {product.on_sale && 
+                            <div className="product__regular-price">{product.regular_price}</div>
+                        }
                         <p className="product__price">{product.actual_price}</p>
                         <p className="product__installments">em até {product.installments}</p>
                     </div>
                     <p className="product__choose">Escolha o tamanho:</p>
-                        
                     <form className="product__form" onSubmit={saveProduct}>
                         <div className="product__sizes sizes">
                             {product.sizes.map(({size}) => (

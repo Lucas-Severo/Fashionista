@@ -1,5 +1,6 @@
 let products2 = JSON.parse(localStorage.getItem('products'));
 let amount = localStorage.getItem('products_amount');
+let price = localStorage.getItem('price');
 
 if(!products2) {
     products2 = [];
@@ -8,6 +9,9 @@ if(!products2) {
 if(!amount)
     amount = 0;
 
+if(!price)
+    price = 0.0;
+
 let defaultState = {
     cartProducts: products2,
     products: [],
@@ -15,7 +19,7 @@ let defaultState = {
     size: null,
     items: [],
     productsAmount: Number(amount),
-    totalPurchase: 0.0,
+    totalPurchase: Number(price),
     isLoading: false
 }
 
@@ -54,6 +58,7 @@ function reducer(state = defaultState, action) {
                 productsAmount: action.productsAmount
             }
         case "SET_TOTAL_PURCHASE":
+            localStorage.setItem('price', action.totalPurchase);
             return {
                 ...state,
                 totalPurchase: action.totalPurchase
