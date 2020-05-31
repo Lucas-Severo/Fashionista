@@ -61,7 +61,10 @@ function Search({ products, items, setSearchItems}) {
                             <img src={imageNotFound} alt={product.name} className="search__image"/>
                         )}
                         <Link 
-                            to={"/product/"+product.code_color} 
+                            to={{pathname: "/product/"+(product.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                state: {
+                                    id: product.code_color
+                            }}}
                             onClick={hideSearch} className="search__title">
                             {product.name}
                         </Link>

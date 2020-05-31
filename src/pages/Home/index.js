@@ -30,7 +30,10 @@ function Home({products, quantity, isLoading}) {
                         {product.on_sale 
                             ? (
                             <>
-                                <Link to={"/product/"+product.code_color}>
+                                <Link to={{pathname: "/product/"+(product.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                          state: {
+                                            id: product.code_color
+                                          }}}>
                                 <div className="clothes__image-container">
                                     { product.image 
                                         ? <img src={product.image} className="clothes__image" alt={product.name}/>
@@ -40,7 +43,10 @@ function Home({products, quantity, isLoading}) {
                                 </div>
                                 </Link>
 
-                                <Link className="clothes__title" to={"/product/"+product.code_color}>{product.name}</Link>
+                                <Link className="clothes__title" to={{pathname: "/product/"+(product.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                          state: {
+                                            id: product.code_color
+                                          }}}>{product.name}</Link>
 
                                 <div className="clothes__prices">
                                     <p className="clothes__price--regular">{product.regular_price}</p>
@@ -49,7 +55,10 @@ function Home({products, quantity, isLoading}) {
                             </>
                         ) : (
                             <>
-                            <Link to={"/product/"+product.code_color}>
+                            <Link to={{pathname: "/product/"+(product.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                          state: {
+                                            id: product.code_color
+                                          }}}>
                             <div className="clothes__image-container">
                                 { product.image 
                                     ? <img src={product.image} className="clothes__image" alt={product.name}/>
@@ -58,7 +67,10 @@ function Home({products, quantity, isLoading}) {
                             </div>
                             </Link>
 
-                            <Link className="clothes__title" to={"/product/"+product.code_color}>{product.name}</Link>
+                            <Link className="clothes__title" to={{pathname: "/product/"+(product.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                          state: {
+                                            id: product.code_color
+                                          }}}>{product.name}</Link>
 
                             <p className="clothes__price">{product.actual_price}</p>
                             </>

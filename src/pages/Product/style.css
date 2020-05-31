@@ -145,7 +145,7 @@
     background: #333;
 }
 
-@media(max-width:768px) {
+@media(max-width: 960px) {
     .product__container {
         width: 90%;
         margin: 0 auto;
@@ -170,6 +170,11 @@
     }
 
     .product__save {
-        margin: 20px 0;
+        margin: 20px auto;
+        width: 80%;
+    }
+
+    .size__field {
+        margin-bottom: 5px;
     }
 }

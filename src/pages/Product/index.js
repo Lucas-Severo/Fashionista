@@ -15,11 +15,11 @@ function Product({setTotalPurchase, products, id, size, productsAmount, props, u
 
     useEffect(() => {
         async function getData() {
-            updateId(props.match.params.id);
+            updateId(props.location.state.id);
             setSize(null);
         }
         getData();
-    }, [props.match.params.id, updateId, setSize]);
+    }, [props.location.state.id, updateId, setSize]);
 
     const saveProduct = (ev) => {
         ev.preventDefault();

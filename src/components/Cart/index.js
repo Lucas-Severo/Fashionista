@@ -96,7 +96,10 @@ function Cart({cartProducts, setCartProducts,
                             )}
  
                             <Link 
-                                to={`/product/${cartProduct.code_color}`} 
+                                to={{pathname: "/product/"+(cartProduct.name.toLowerCase().replace(RegExp(" ", "gi"), "-")),
+                                    state: {
+                                        id: cartProduct.code_color
+                                }}}
                                 className="item__title"
                                 onClick={hideCart}>{cartProduct.name}</Link>
                             <p className="item__size">Size: {cartProduct.size}</p>
